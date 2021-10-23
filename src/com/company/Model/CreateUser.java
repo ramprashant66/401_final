@@ -13,7 +13,7 @@ public class CreateUser
     private String lastName;                //user's last name
     private int age;                        //user's age
     private double height;                  //user's height
-    private double weight;                  //user's weight
+    private double weight;                  //user's weight ///////for now
     private String exerciseIntensity;       //user's exercise intensity level
 
     //Constructor for the class

@@ -1,6 +1,7 @@
 package com.company.View;
 import com.company.Model.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Display
@@ -109,9 +110,9 @@ public class Display
     }
 
     //This block is used if the user chooses to update the information.
-    public static void update(CreateUser[] user)
+    public static void update(ArrayList <CreateUser> user)
     {
-        if (user[0] == null) //making sure the array has at least one user.
+        if (user.isEmpty()) //making sure the array has at least one user.
         {
             System.out.println("No users Exist!");         //error message
             return;                                         //exit program
@@ -125,12 +126,13 @@ public class Display
         String firstNameSearch = scan.nextLine();   //taking the entered first name to search the array
 
         //loop to search for the inputted name in the array.
-        for (int index = 0; index < user.length; index++)
+        for (int index = 0; index < user.size(); index++) //check lengith -1 (maybe an error)
         {
             //if first name is in the array
-            if(firstNameSearch.equals(user[index].getFirstName()))
+            //if(firstNameSearch.equals(user[index].getFirstName()))
+            if(user.get(index).getFirstName().equals(firstNameSearch))
             {
-                System.out.println("Alright! User <" + user[index].getFirstName() + "> found with ID# " +
+                System.out.println("Alright! User <" + firstNameSearch + "> found with ID# " +
                         index);  //confirmation that the username was found
                 System.out.println("What would you like to update?");  //display
                 System.out.println("1. Weight");                       //option 1
@@ -142,27 +144,30 @@ public class Display
                 //if choice is 1
                 if (biChoice == 1)
                 {
-                    System.out.println("The current weight of the user is: " + user[index].getWeight()); //shows the current weight
+                    System.out.println("The current weight of the user is: " + user.get(index).getWeight() + "kg."); //shows the current weight
                     System.out.println("Enter the adjusted weight: ");  //prompts the weight
-                    user[index].setWeight();                            //calls the set weight function
+                    user.get(index).setWeight();                            //calls the set weight function
 
-                    System.out.println("You're all set...");            //confirmation that weight was updated
+                    System.out.println("Your adjusted weight is now: " + user.get(index).getWeight() +
+                            " kilos!\nYou're all set...");            //confirmation that weight was updated
                 }
                 // else if choice is 2
                 else if (biChoice == 2)
                 {
                     System.out.println("The current exercise intensity of the user is: " +
-                            user[index].getExerciseIntensity());        //shows the current exercise intensity
+                            user.get(index).getExerciseIntensity());        //shows the current exercise intensity
                     System.out.println("Enter the adjusted intensity level: ");     //prompt
-                    user[index].setExerciseIntensity();                         //calls the set exercise intensity function
+                    user.get(index).setExerciseIntensity();                         //calls the set exercise intensity function
 
-                    System.out.println("You're all set...");           //confirmation that the exercise intensity was updated
+                    System.out.println("Your adjusted exercise intensity level is now: " +
+                            user.get(index).getExerciseIntensity() +
+                            "\nYou're all set...");           //confirmation that the exercise intensity was updated
                 }
 
             }
 
-            //else if the user name was not found
-            else if ((index == user.length -1) && !(firstNameSearch.equals(user[index].getFirstName())))
+            //else if the username was not found
+            else if (!(user.get(index).getFirstName().equals(firstNameSearch)))
             {
                 System.out.println("No user with that name found! User does not exist!");   //print error message
             }
