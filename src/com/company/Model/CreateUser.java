@@ -1,9 +1,6 @@
 package com.company.Model;
-import java.io.File;                        //to read from a file
-import java.io.FileNotFoundException;       //for file exceptions
 import java.io.FileWriter;                  //to write to a file
 import java.io.IOException;                 //for I/O exception
-import java.util.Scanner;                   //for I/O
 import com.company.View.*;                  //importing package View to use it's class
 
 //This class creates a new user
@@ -120,32 +117,5 @@ public class CreateUser
         }
 
     }//end storeData()
-
-//This block reads the information of the protein values from the ProteinChart text file.
-    public static void fileInfo()
-    {
-        //file to read from
-        File file = new File("src/com/ProteinChart.txt");
-
-        //Scanner object to work with
-        Scanner scan;
-        {
-            try
-            {
-                //try to create a new object if the text file exists
-                scan = new Scanner(file);
-
-                //while there is data in the text file
-                while (scan.hasNextLine())
-                {
-                    //read each line
-                    System.out.println(scan.nextLine());
-                }
-            } catch (FileNotFoundException error) //throw error if the file does not exist or there was error reading from it
-            {
-                error.printStackTrace();
-            }
-        }
-    } //end fileInfo()
 
 } //end class CreateUser
