@@ -1,7 +1,0 @@
-First name: lop
-Last name: l
-Age: 4
-Height: 173.74
-Weight: 207.27
-Exercise intensity: light
-

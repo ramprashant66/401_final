@@ -2,7 +2,10 @@ package com.company.View;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
+import  com.company.Model.FoodStuff;
+
 
 public class DisplayChart
 {
@@ -33,4 +36,14 @@ public class DisplayChart
             }
         }
     } //end fileInfo()
+
+    public static void chart(ArrayList<FoodStuff> food)
+    {
+        for (FoodStuff foodStuff : food)
+        {
+            System.out.println("Food name: " + foodStuff.getFoodName() + ", Quantity: " + foodStuff.getQuantity()
+                    + ", Unit: " + foodStuff.getUnit() + ", Content: " + foodStuff.getContent() + "g");
+        }
+    }//end printChart
+
 }

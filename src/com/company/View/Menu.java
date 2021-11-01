@@ -11,7 +11,8 @@ public class Menu
                 1. Add a new user
                 2. Update current user information
                 3. Show Progress
-                4. Exit
+                4. Display Protein Chart
+                5. Exit
                 What would you like to do?""");      //show options
 
     } //end menu()
@@ -22,7 +23,7 @@ public class Menu
         Scanner scan = new Scanner(System.in);
         int option = scan.nextInt();    //user input
 
-        while (!((option == 1) || (option == 2) || (option == 3) || (option == 4)))  //input validation
+        while (!((option == 1) || (option == 2) || (option == 3) || (option == 4) || (option == 5)))  //input validation
         {
             System.out.println("Invalid option chosen. Try again...");  //user prompt to re-enter
             option = scan.nextInt();    //retake input

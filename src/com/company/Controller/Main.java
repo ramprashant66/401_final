@@ -1,7 +1,9 @@
 package com.company.Controller;
 
 import com.company.Model.CreateUser;
+import com.company.Model.FoodStuff;
 import com.company.View.Display;
+import com.company.View.DisplayChart;
 import com.company.View.Menu;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -44,9 +46,16 @@ public class Main {
             else if (option == 3)
             {
                 //show progress
+
             }
 
             else if (option == 4)
+            {
+                ArrayList<FoodStuff> me = FoodStuff.foodStuff(); //get the chart
+                DisplayChart.chart(me);  //display chart
+            }
+
+            else if (option == 5)
             {
                 //we exit
                 Menu.showExitLogo();
