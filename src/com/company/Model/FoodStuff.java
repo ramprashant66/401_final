@@ -60,7 +60,7 @@ public class FoodStuff
         ArrayList<FoodStuff> food = new ArrayList<>();
 
         //chicken
-        food.add(new FoodStuff("Chicken Breast", 1, "Pound", 37));
+        food.add(new FoodStuff("chicken breast", 1, "Pound", 37));
         food.add(new FoodStuff("Chicken Drumstick", 1, "Drumette", 22));
         food.add(new FoodStuff("Chicken Wings", 1, "1 Wingette", 4.5));
         food.add(new FoodStuff("Chicken Thigh", 1, "Unit",31));
@@ -107,7 +107,7 @@ public class FoodStuff
         food.add(new FoodStuff("Turkey Deli", 1, "Ounce", 7.7));
 
 
-        //vegies
+        //veggies
         food.add(new FoodStuff("Mushrooms", 1, "Cup",0.3));
         food.add(new FoodStuff("Soybean", 1, "Cup",31));
         food.add(new FoodStuff("Tofu", 0.2, "0.2 ounce block",9.1));

@@ -11,7 +11,19 @@ public class CreateUser
     private int age;                        //user's age
     private double height;                  //user's height
     private double weight;                  //user's weight ///////for now
-    private String exerciseIntensity;       //user's exercise intensity level
+    private double exerciseIntensityValue;       //user's exercise intensity level
+
+    private double proteinNeeds;
+
+    public double getProteinNeeds()
+    {
+        return proteinNeeds;
+    }
+
+    public void setProteinNeeds()
+    {
+        //proteinNeeds = (exerciseIntensityValue * totalProtein);
+    }
 
     //Constructor for the class
     public CreateUser()
@@ -85,16 +97,17 @@ public class CreateUser
     }
 
     //gets user's exercise intensity
-    public String getExerciseIntensity()
+    public double getExerciseIntensity()
     {
-        return exerciseIntensity;
+        return exerciseIntensityValue;
     }
 
     //sets user's exercise intensity
     public void setExerciseIntensity()
     {
-        exerciseIntensity = Display.exercise();
+        exerciseIntensityValue = Display.exercise();
     }
+
 
     //This block  writes the user's data to a text file
     public void storeData(FileWriter userFile)

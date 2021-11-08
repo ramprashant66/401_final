@@ -10,7 +10,7 @@ public class Menu
         System.out.println("""
                 1. Add a new user
                 2. Update current user information
-                3. Show Progress
+                3. Add protein
                 4. Display Protein Chart
                 5. Exit
                 What would you like to do?""");      //show options

@@ -64,6 +64,14 @@ public class Display
         return Math.round((height * 30.48) * 100) / 100.0;
     }
 
+    public static double proteinReq()
+    {
+        double protein = 0.0;
+        //protein = totalProtein * exercise
+
+        return protein;
+    }
+
     //Reads the weight and returns it
     public static double weight()
     {
@@ -83,13 +91,15 @@ public class Display
     }
 
     //Reading exercise intensity from user and returning it
-    public static String exercise()
+    public static double exercise()
     {
+        double exerciseValue = 0.0;
+
         //Screen outputs of exercise intensity levels.
         System.out.println("Enter your exercise intensity level: ");
-        System.out.println("Light = ");
-        System.out.println("Moderate = ");
-        System.out.println("Heavy = ");
+        System.out.println("Light = workout once a week");
+        System.out.println("Moderate = workout 3 times a week");
+        System.out.println("Heavy = workout every second day");
 
         Scanner scan = new Scanner(System.in);      //new scanner object to work with
         String exerciseIntensity = scan.next();     //getting the exercise intensity levels from user
@@ -106,8 +116,14 @@ public class Display
             exerciseIntensity = exerciseIntensity.toLowerCase();                                //set the input to lowercase
         }
 
-        return exerciseIntensity;       //return the exercise intensity level
+        switch (exerciseIntensity) {
+            case "light" -> exerciseValue = 1.0;
+            case "moderate" -> exerciseValue = 1.5;
+            case "heavy" -> exerciseValue = 2.0;
+        }
+        return exerciseValue;       //return the exercise intensity level
     }
+
 
     //This block is used if the user chooses to update the information.
     public static void update(ArrayList <CreateUser> user)
@@ -145,7 +161,7 @@ public class Display
                 if (biChoice == 1)
                 {
                     System.out.println("The current weight of the user is: " + user.get(index).getWeight() + "kg."); //shows the current weight
-                    System.out.println("Enter the adjusted weight: ");  //prompts the weight
+                    //System.out.println("Enter the adjusted weight: ");  //prompts the weight
                     user.get(index).setWeight();                            //calls the set weight function
 
                     System.out.println("Your adjusted weight is now: " + user.get(index).getWeight() +
@@ -156,7 +172,7 @@ public class Display
                 {
                     System.out.println("The current exercise intensity of the user is: " +
                             user.get(index).getExerciseIntensity());        //shows the current exercise intensity
-                    System.out.println("Enter the adjusted intensity level: ");     //prompt
+                    //System.out.println("Enter the adjusted intensity level: ");     //prompt
                     user.get(index).setExerciseIntensity();                         //calls the set exercise intensity function
 
                     System.out.println("Your adjusted exercise intensity level is now: " +

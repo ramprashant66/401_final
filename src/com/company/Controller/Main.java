@@ -2,6 +2,7 @@ package com.company.Controller;
 
 import com.company.Model.CreateUser;
 import com.company.Model.FoodStuff;
+import com.company.Model.GetFood;
 import com.company.View.Display;
 import com.company.View.DisplayChart;
 import com.company.View.Menu;
@@ -45,6 +46,8 @@ public class Main {
 
             else if (option == 3)
             {
+               int cat = GetFood.getCat();
+                GetFood.inputFood(cat);
                 //show progress
 
             }
