@@ -130,7 +130,7 @@ public class Display
     {
         if (user.isEmpty()) //making sure the array has at least one user.
         {
-            System.out.println("No users Exist!");         //error message
+            System.out.println("No users Exist! Create one before proceeding.");         //error message
             return;                                         //exit program
         }
 
@@ -142,7 +142,7 @@ public class Display
         String firstNameSearch = scan.nextLine();   //taking the entered first name to search the array
 
         //loop to search for the inputted name in the array.
-        for (int index = 0; index < user.size(); index++) //check lengith -1 (maybe an error)
+        for (int index = 0; index < user.size(); index++)
         {
             //if first name is in the array
             //if(firstNameSearch.equals(user[index].getFirstName()))
@@ -153,6 +153,7 @@ public class Display
                 System.out.println("What would you like to update?");  //display
                 System.out.println("1. Weight");                       //option 1
                 System.out.println("2. Exercise Intensity");           //option 2
+                System.out.println("3. Add Proteins");           //option 3
 
                 //getting the choice (1 or 2)
                 int biChoice = scan.nextInt();
@@ -179,6 +180,23 @@ public class Display
                             user.get(index).getExerciseIntensity() +
                             "\nYou're all set...");           //confirmation that the exercise intensity was updated
                 }
+
+                else if(biChoice == 3)
+
+                    if (user.isEmpty())
+                    {
+                        System.out.println("No user exists! Create one before accessing any information..");
+                    }
+
+                    else {
+                        int category = GetFood.getCat();
+                        double proteinFromUSer = GetFood.inputFood(category);
+
+                        user.get(index).setProteinNeeds(proteinFromUSer); //accumulate the total protein for the user
+
+                        System.out.println("The total protein is: " +
+                                user.get(index).getProteinNeeds());  //debugging= see the total protein
+                    }
 
             }
 

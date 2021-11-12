@@ -12,18 +12,7 @@ public class CreateUser
     private double height;                  //user's height
     private double weight;                  //user's weight ///////for now
     private double exerciseIntensityValue;       //user's exercise intensity level
-
     private double proteinNeeds;
-
-    public double getProteinNeeds()
-    {
-        return proteinNeeds;
-    }
-
-    public void setProteinNeeds()
-    {
-        //proteinNeeds = (exerciseIntensityValue * totalProtein);
-    }
 
     //Constructor for the class
     public CreateUser()
@@ -34,6 +23,8 @@ public class CreateUser
         setHeight();                        //sets user's height
         setWeight();                        //sets user's weight
         setExerciseIntensity();             //sets user's exercise intensity
+        proteinNeeds = 0;
+
     }
 
     //gets user's first name
@@ -108,6 +99,17 @@ public class CreateUser
         exerciseIntensityValue = Display.exercise();
     }
 
+    public void setProteinNeeds(double protein)
+    {
+        proteinNeeds += protein;
+
+        //proteinNeeds = (exerciseIntensityValue * totalProtein);
+    }
+
+    public double getProteinNeeds() { return proteinNeeds; }
+
+
+
 
     //This block  writes the user's data to a text file
     public void storeData(FileWriter userFile)
@@ -119,7 +121,7 @@ public class CreateUser
             //stores the info to write in the string userData
             userData = userData.concat("First name: " + getFirstName() + "\n" + "Last name: " + getLastName() + "\n" +
                     "Age: " + getAge() + "\n" + "Height: " + getHeight() + "\n" + "Weight: " + getWeight() + "\n" +
-                    "Exercise intensity: " + getExerciseIntensity() + "\n\n");
+                    "Exercise intensity: " + getExerciseIntensity() + "\n");
 
             //writing to the text file from the userData
             userFile.write(userData);
@@ -130,5 +132,24 @@ public class CreateUser
         }
 
     }//end storeData()
+
+    public void storeProtein(FileWriter userFile)
+    {
+        String userData = "";
+
+        try
+        {
+            //stores the info to write in the string userData
+            userData = userData.concat("Total Protein: " + getProteinNeeds() + "\n\n");
+
+            //writing to the text file from the userData
+            userFile.append(userData);
+
+        } catch (IOException error) //catching error if the file did not get created
+        {
+            error.printStackTrace();
+        }
+
+    }//end storeProtein()
 
 } //end class CreateUser

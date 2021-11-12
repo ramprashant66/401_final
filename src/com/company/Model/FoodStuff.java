@@ -126,7 +126,7 @@ public class FoodStuff
         food.add(new FoodStuff("1% fat milk", 1, "250ml glass",8.2));
         food.add(new FoodStuff("Skim milk", 1, "250ml glass",8.3));
         food.add(new FoodStuff("Fat free milk", 1, "250ml glass",8.3));
-        food.add(new FoodStuff("Cheese slice", 1, "250ml glass",6.4));
+        food.add(new FoodStuff("Cheese slice", 1, "Slice",6.4));
         food.add(new FoodStuff("Butter", 1, "Teaspoon", 0.1));
 
         //snacks
@@ -136,6 +136,7 @@ public class FoodStuff
         food.add(new FoodStuff("Protein Bar", 1, "Bar",20));
 
         //protein shake
+        //need to enter from various brands of protein
         food.add(new FoodStuff("Whey Protein", 1, "Scoop",30));
         food.add(new FoodStuff("Whey Isolate", 1, "Scoop",20));
 

@@ -15,8 +15,8 @@ public class Main {
 
     public static void main(String[] args) throws IOException
     {
-        int count = 0;      //this acts as the loop control variable
-        ArrayList <CreateUser> users = new ArrayList<>();     //create an array list which will hold the user objects
+        int userCount = 0;      //this acts as the loop control variable
+        ArrayList <CreateUser> totalUsers = new ArrayList<>();     //create an array list which will hold the user objects
 
         //creating a new text file which will hold the user's information
         FileWriter userFile = new FileWriter("src/com/userFile.txt");
@@ -33,32 +33,46 @@ public class Main {
             if (option == 1)
             {
                 CreateUser user = new CreateUser();  //creates a new user.
-                users.add(user);             //adds the user to the users array list.
-                count++;                            //increment count variable
+                totalUsers.add(user);             //adds the user to the users array list.
+                userCount++;                            //increment count variable
 
-                user.storeData(userFile);           //write the data to the text file.
+                //user.storeData(userFile);           //write the data to the text file.
             }
 
             else if (option == 2)
             {
-                Display.update(users);       //update current user information
-            }
+                Display.update(totalUsers);       //update current user information
 
+            }
+/*
             else if (option == 3)
             {
-               int cat = GetFood.getCat();
-                GetFood.inputFood(cat);
-                //show progress
+                if (totalUsers.isEmpty())
+                {
+                    System.out.println("No user exists!");
+                }
 
-            }
+                else
+                {
+                    int category = GetFood.getCat();
+                    double proteinFromUSer = GetFood.inputFood(category);
 
-            else if (option == 4)
+                   totalUsers.get(userCount -1).setProteinNeeds(proteinFromUSer); //accumulate the total protein for the user
+
+                   System.out.println("The total protein is: " +
+                            totalUsers.get(userCount -1).getProteinNeeds());  //debugging= see the total protein
+                }
+
+                .storeData(userFile);           //write the data to the text file.
+            }*/
+
+            else if (option == 3)
             {
                 ArrayList<FoodStuff> me = FoodStuff.foodStuff(); //get the chart
                 DisplayChart.chart(me);  //display chart
             }
 
-            else if (option == 5)
+            else if (option == 4)
             {
                 //we exit
                 Menu.showExitLogo();
@@ -66,6 +80,12 @@ public class Main {
             }
 
             exitProgram = Menu.endProgram();        //exit program?
+        }
+
+        for(CreateUser writeInfo : totalUsers)
+        {
+            writeInfo.storeData(userFile);           //write the data to the text file.
+            writeInfo.storeProtein(userFile);
         }
 
         Menu.showExitLogo(); //show exit logo
