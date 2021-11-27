@@ -15,6 +15,8 @@ public class Main {
 
     public static void main(String[] args) throws IOException
     {
+
+        int userId = 0;
         int userCount = 0;      //this acts as the loop control variable
         ArrayList <CreateUser> totalUsers = new ArrayList<>();     //create an array list which will hold the user objects
 
@@ -41,30 +43,8 @@ public class Main {
 
             else if (option == 2)
             {
-                Display.update(totalUsers);       //update current user information
-
+                userId = Display.checkUserExistence(totalUsers);       //update current user information
             }
-/*
-            else if (option == 3)
-            {
-                if (totalUsers.isEmpty())
-                {
-                    System.out.println("No user exists!");
-                }
-
-                else
-                {
-                    int category = GetFood.getCat();
-                    double proteinFromUSer = GetFood.inputFood(category);
-
-                   totalUsers.get(userCount -1).setProteinNeeds(proteinFromUSer); //accumulate the total protein for the user
-
-                   System.out.println("The total protein is: " +
-                            totalUsers.get(userCount -1).getProteinNeeds());  //debugging= see the total protein
-                }
-
-                .storeData(userFile);           //write the data to the text file.
-            }*/
 
             else if (option == 3)
             {
@@ -81,6 +61,8 @@ public class Main {
 
             exitProgram = Menu.endProgram();        //exit program?
         }
+
+        Display.showResults(totalUsers, userId);
 
         for(CreateUser writeInfo : totalUsers)
         {

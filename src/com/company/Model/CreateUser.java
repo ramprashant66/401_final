@@ -1,6 +1,9 @@
 package com.company.Model;
 import java.io.FileWriter;                  //to write to a file
 import java.io.IOException;                 //for I/O exception
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.company.View.*;                  //importing package View to use it's class
 
 //This class creates a new user
@@ -12,6 +15,7 @@ public class CreateUser
     private double height;                  //user's height
     private double weight;                  //user's weight ///////for now
     private double exerciseIntensityValue;       //user's exercise intensity level
+    private double proteinTotal;
     private double proteinNeeds;
 
     //Constructor for the class
@@ -23,8 +27,8 @@ public class CreateUser
         setHeight();                        //sets user's height
         setWeight();                        //sets user's weight
         setExerciseIntensity();             //sets user's exercise intensity
-        proteinNeeds = 0;
-
+        proteinTotal = 0;
+        setProteinNeeds();
     }
 
     //gets user's first name
@@ -99,16 +103,22 @@ public class CreateUser
         exerciseIntensityValue = Display.exercise();
     }
 
-    public void setProteinNeeds(double protein)
+    public void setProteinTotal(double protein)
     {
-        proteinNeeds += protein;
-
-        //proteinNeeds = (exerciseIntensityValue * totalProtein);
+        proteinTotal += protein;
     }
 
-    public double getProteinNeeds() { return proteinNeeds; }
+    public double getProteinTotal() { return (Math.round(proteinTotal) * 100) / 100.00; }
 
+    public void setProteinNeeds()
+    {
+        proteinNeeds = (exerciseIntensityValue * weight);
+    }
 
+    public double getProteinNeeds()
+    {
+        return proteinNeeds;
+    }
 
 
     //This block  writes the user's data to a text file
@@ -137,10 +147,16 @@ public class CreateUser
     {
         String userData = "";
 
+        Date currentDate = new Date();
+        SimpleDateFormat simpleDate =  new SimpleDateFormat("MM/dd/yyyy hh:mm a");
+
         try
         {
             //stores the info to write in the string userData
-            userData = userData.concat("Total Protein: " + getProteinNeeds() + "\n\n");
+            userData = userData.concat("Total Protein consumed: " + getProteinTotal() + " grams" + "\n" +
+                    "Total required for the day: " + getProteinNeeds() + " grams" + "\n" + "Intake status: " +
+                            (getProteinTotal() >= getProteinNeeds() ? "Met/Exceeded" : " Under eaten") + "\n" +
+                    "Chrono: " + simpleDate.format(currentDate) + "\n\n");
 
             //writing to the text file from the userData
             userFile.append(userData);

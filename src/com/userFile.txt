@@ -1,16 +1,11 @@
-First name: prashant
-Last name: ram
-Age: 26
-Height: 167.64
+First name: p
+Last name: r
+Age: 23
+Height: 179.83
 Weight: 68.18
 Exercise intensity: 1.0
-Total Protein: 23.0
-
-First name: anjini
-Last name: prasad
-Age: 29
-Height: 161.54
-Weight: 54.55
-Exercise intensity: 1.5
-Total Protein: 68.5
+Total Protein consumed: 48.0 grams
+Total required for the day: 68.18 grams
+Intake status:  Under eaten
+Chrono: 11/26/2021 12:19 AM
 

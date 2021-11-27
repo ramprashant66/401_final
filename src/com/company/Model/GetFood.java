@@ -3,10 +3,8 @@ package com.company.Model;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class GetFood
-{
-    public static void foodCategories()
-    {
+public class GetFood {
+    public static void foodCategories() {
         System.out.println(
                 """
                         1. Chicken
@@ -22,8 +20,7 @@ public class GetFood
                         11. Protein Shake""");
     }
 
-    public static int getCat()
-    {
+    public static int getCat() {
         foodCategories();       //display the food categories
 
         int selectCat;     //initialize variable which will hold the user's choice from menu
@@ -43,230 +40,45 @@ public class GetFood
         return selectCat;       //return to the caller
     }
 
-    public static double inputFood(int category)
-    {
+    public static double inputFood() {
         double totalProtein = 0.0;
 
         ArrayList<FoodStuff> name;      //array list to hold the food
+        name = FoodStuff.foodStuff();   //store the returned array in the new array
 
-        name = FoodStuff.foodStuff();                       //store the returned array in the new array
+        int [] indices = {0, 6, 15, 22, 23, 27, 32, 37, 48, 57, 66, name.size()};
 
-            String exit = "N";
+        String exit = "N";
 
-            int index;
+        int index = getCat();
 
-            if (category == 1) //chicken
+        int firstOption = indices[index - 1];
+        if (firstOption - 1 < 0)
+        {
+            firstOption = indices[0];
+        }
+
+
+        int lastOption = indices[index];
+        if (lastOption > name.size())
+        {
+            lastOption = name.size();
+        }
+
+        index = 0;
+
+        while (!(exit.equals("Y")))          //loop until the "done" == N
+        {
+
+            for ( index = firstOption; index < lastOption; index++)   //indexes foe chicken
             {
-
-                while(!(exit.equals("Y")))          //loop until the "done" == N
-                {
-                    int firstOption = 0,
-                            lastOption = 6;
-
-                    for (index = 0; index < lastOption; index++)   //indexes foe chicken
-                    {
-                        System.out.println((index) + ". " + name.get(index).getFoodName()); //display the foodstuff
-                    }
-
-                  totalProtein += GetFood.addProtein(name, firstOption, lastOption);
-                    exit = GetFood.getExit();
-                }
-
-              //  System.out.println("The total protein is: " + totalProtein);        //for debug: display total protein
-                return totalProtein;
+                System.out.println((index) + ". " + name.get(index).getFoodName()); //display the foodstuff
             }
 
-            else if (category == 2)
-            {
-                while(!(exit.equals("Y")))
-                {
-                    int firstOption = 6,
-                            lastOption = 12;
+            totalProtein += GetFood.addProtein(name, firstOption, lastOption);
+            exit = GetFood.getExit();
+        }
 
-                    for (index = 6; index < 12; index++)
-                    {
-                        System.out.println(index + ". " + name.get(index).getFoodName());
-                    }
-
-                    totalProtein += GetFood.addProtein(name, firstOption, lastOption);
-                    exit = GetFood.getExit();
-                }
-
-             //   System.out.println("The total protein is: " + totalProtein);
-                return totalProtein;
-
-            }
-
-            else if (category == 3)
-            {
-                while(!(exit.equals("Y")))
-                {
-                    int firstOption = 12,
-                            lastOption = 16;
-
-                    for (index = 12; index < 16; index++)
-                    {
-                        System.out.println(index + ". " + name.get(index).getFoodName());
-                    }
-
-                    totalProtein += GetFood.addProtein(name, firstOption, lastOption);
-                    exit = GetFood.getExit();
-                }
-            //    System.out.println("The total protein is: " + totalProtein);
-                return totalProtein;
-            }
-
-            else if (category == 4)
-            {
-                while(!(exit.equals("Y")))
-                {
-                    int firstOption = 16,
-                            lastOption = 17;
-
-                    for (index = 16; index < 17; index++)
-                    {
-                        System.out.println(index + ". " + name.get(index).getFoodName());
-                    }
-
-                    totalProtein += GetFood.addProtein(name, firstOption, lastOption);
-                    exit = GetFood.getExit();
-                }
-            //    System.out.println("The total protein is: " + totalProtein);
-                return totalProtein;
-            }
-
-            else if (category == 5)
-            {
-                while(!(exit.equals("Y")))
-                {
-                    int firstOption = 17,
-                            lastOption = 20;
-
-                    for (index = 17; index < 20; index++)
-                    {
-                        System.out.println(index + ". " + name.get(index).getFoodName());
-                    }
-
-                    totalProtein += GetFood.addProtein(name, firstOption, lastOption);
-                    exit = GetFood.getExit();
-                }
-             //   System.out.println("The total protein is: " + totalProtein);
-                return totalProtein;
-            }
-
-            else if (category == 6)
-            {
-                while(!(exit.equals("Y")))
-                {
-                    int firstOption = 20,
-                            lastOption = 25;
-
-                    for (index = 20; index < 25; index++)
-                    {
-                        System.out.println(index + ". " + name.get(index).getFoodName());
-                    }
-
-                    totalProtein += GetFood.addProtein(name, firstOption, lastOption);
-                    exit = GetFood.getExit();
-                }
-               // System.out.println("The total protein is: " + totalProtein);
-                return totalProtein;
-            }
-
-            else if (category == 7)
-            {
-                while(!(exit.equals("Y")))
-                {
-                    int firstOption = 25,
-                            lastOption = 30;
-
-                    for (index = 25; index < 30; index++)
-                    {
-                        System.out.println(index + ". " + name.get(index).getFoodName());
-                    }
-
-                    totalProtein += GetFood.addProtein(name, firstOption, lastOption);
-                    exit = GetFood.getExit();
-                }
-               // System.out.println("The total protein is: " + totalProtein);
-                return totalProtein;
-            }
-
-            else if (category == 8)
-            {
-                while(!(exit.equals("Y")))
-                {
-                    int firstOption = 30,
-                            lastOption = 40;
-
-                    for (index = 30; index < 40; index++)
-                    {
-                        System.out.println(index + ". " + name.get(index).getFoodName());
-                    }
-
-                    totalProtein += GetFood.addProtein(name, firstOption, lastOption);
-                    exit = GetFood.getExit();
-                }
-                ///System.out.println("The total protein is: " + totalProtein);
-                return totalProtein;
-            }
-
-            else if (category == 9)
-            {
-                while(!(exit.equals("Y")))
-                {
-                    int firstOption = 40,
-                            lastOption = 47;
-
-                    for (index = 40; index < 47; index++)
-                    {
-                        System.out.println(index + ". " + name.get(index).getFoodName());
-                    }
-
-                    totalProtein += GetFood.addProtein(name, firstOption, lastOption);
-                    exit = GetFood.getExit();
-                }
-                //System.out.println("The total protein is: " + totalProtein);
-                return totalProtein;
-            }
-
-            else if (category == 10)
-            {
-                while(!(exit.equals("Y")))
-                {
-                    int firstOption = 47,
-                            lastOption = 51;
-
-                    for (index = 47; index < 51; index++)
-                    {
-                        System.out.println(index + ". " + name.get(index).getFoodName());
-                    }
-
-                    totalProtein += GetFood.addProtein(name, firstOption, lastOption);
-                    exit = GetFood.getExit();
-                }
-               // System.out.println("The total protein is: " + totalProtein);
-                return totalProtein;
-            }
-
-            else if (category == 11)
-            {
-                while(!(exit.equals("Y")))
-                {
-                    int firstOption = 51,
-                            lastOption = name.size();
-
-                    for (index = 51; index < lastOption; index++)
-                    {
-                        System.out.println(index + ". " + name.get(index).getFoodName());
-                    }
-
-                    totalProtein += GetFood.addProtein(name, firstOption, lastOption);
-                    exit = GetFood.getExit();
-                }
-                //System.out.println("The total protein is: " + totalProtein);
-                return totalProtein;
-            }
             return totalProtein;
     }
 

@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 public class Display
 {
+    static boolean userExists = false;
+
     public Display()
     {
         //empty
@@ -64,14 +66,6 @@ public class Display
         return Math.round((height * 30.48) * 100) / 100.0;
     }
 
-    public static double proteinReq()
-    {
-        double protein = 0.0;
-        //protein = totalProtein * exercise
-
-        return protein;
-    }
-
     //Reads the weight and returns it
     public static double weight()
     {
@@ -97,9 +91,11 @@ public class Display
 
         //Screen outputs of exercise intensity levels.
         System.out.println("Enter your exercise intensity level: ");
+        System.out.println("---------------------------------");
+        System.out.println("Sedentary = no workout at all");
         System.out.println("Light = workout once a week");
-        System.out.println("Moderate = workout 3 times a week");
-        System.out.println("Heavy = workout every second day");
+        System.out.println("Moderate = workout every second day");
+        System.out.println("Heavy = workout daily on an elite level");
 
         Scanner scan = new Scanner(System.in);      //new scanner object to work with
         String exerciseIntensity = scan.next();     //getting the exercise intensity levels from user
@@ -109,7 +105,7 @@ public class Display
 
         //Input validation to check if user entered correct input.
         while (!((exerciseIntensity.equals("light")) || (exerciseIntensity.equals("moderate")) ||
-                (exerciseIntensity.equals("heavy"))))
+                (exerciseIntensity.equals("heavy"))|| (exerciseIntensity.equals("sedentary"))))
         {
             System.out.println("Invalid entry. Enter the correct option from the choices above: "); //error message
             exerciseIntensity = scan.nextLine();                                                //get input again
@@ -117,8 +113,9 @@ public class Display
         }
 
         switch (exerciseIntensity) {
+            case "sedentary" -> exerciseValue = 0.8;
             case "light" -> exerciseValue = 1.0;
-            case "moderate" -> exerciseValue = 1.5;
+            case "moderate" -> exerciseValue = 1.7;
             case "heavy" -> exerciseValue = 2.0;
         }
         return exerciseValue;       //return the exercise intensity level
@@ -126,89 +123,149 @@ public class Display
 
 
     //This block is used if the user chooses to update the information.
-    public static void update(ArrayList <CreateUser> user)
+    public static int checkUserExistence(ArrayList <CreateUser> user)
     {
+        int id = 0;
+
         if (user.isEmpty()) //making sure the array has at least one user.
         {
             System.out.println("No users Exist! Create one before proceeding.");         //error message
-            return;                                         //exit program
+            //return;                                         //exit program
         }
 
-        //Display
-        System.out.println("We're updating current user information..Cool cool.");
-        System.out.println("Let's me look up the data first. What's the first name of the user?");
-
-        Scanner scan = new Scanner(System.in);      //new scanner to work with
-        String firstNameSearch = scan.nextLine();   //taking the entered first name to search the array
-
-        //loop to search for the inputted name in the array.
-        for (int index = 0; index < user.size(); index++)
-        {
-            //if first name is in the array
-            //if(firstNameSearch.equals(user[index].getFirstName()))
-            if(user.get(index).getFirstName().equals(firstNameSearch))
+        else if (!userExists)
             {
-                System.out.println("Alright! User <" + firstNameSearch + "> found with ID# " +
-                        index);  //confirmation that the username was found
-                System.out.println("What would you like to update?");  //display
-                System.out.println("1. Weight");                       //option 1
-                System.out.println("2. Exercise Intensity");           //option 2
-                System.out.println("3. Add Proteins");           //option 3
+                //Display
+                System.out.println("We're updating current user information..Cool cool.");
+                System.out.println("Let me look up the data first. What's the first name of the user?");
 
-                //getting the choice (1 or 2)
-                int biChoice = scan.nextInt();
+                Scanner scan = new Scanner(System.in);      //new scanner to work with
+                String firstNameSearch = scan.nextLine();   //taking the entered first name to search the array
 
-                //if choice is 1
-                if (biChoice == 1)
+                //loop to search for the inputted name in the array.
+                for (int index = 0; index < user.size(); index++)
                 {
-                    System.out.println("The current weight of the user is: " + user.get(index).getWeight() + "kg."); //shows the current weight
-                    //System.out.println("Enter the adjusted weight: ");  //prompts the weight
-                    user.get(index).setWeight();                            //calls the set weight function
-
-                    System.out.println("Your adjusted weight is now: " + user.get(index).getWeight() +
-                            " kilos!\nYou're all set...");            //confirmation that weight was updated
-                }
-                // else if choice is 2
-                else if (biChoice == 2)
-                {
-                    System.out.println("The current exercise intensity of the user is: " +
-                            user.get(index).getExerciseIntensity());        //shows the current exercise intensity
-                    //System.out.println("Enter the adjusted intensity level: ");     //prompt
-                    user.get(index).setExerciseIntensity();                         //calls the set exercise intensity function
-
-                    System.out.println("Your adjusted exercise intensity level is now: " +
-                            user.get(index).getExerciseIntensity() +
-                            "\nYou're all set...");           //confirmation that the exercise intensity was updated
-                }
-
-                else if(biChoice == 3)
-
-                    if (user.isEmpty())
+                    //if first name is in the array
+                    if (user.get(index).getFirstName().equals(firstNameSearch))
                     {
-                        System.out.println("No user exists! Create one before accessing any information..");
+                        System.out.println("Alright! User <" + firstNameSearch + "> found with ID# " +
+                                index);  //confirmation that the username was found
+
+                        userExists = true;
+                        id = index;
                     }
-
-                    else {
-                        int category = GetFood.getCat();
-                        double proteinFromUSer = GetFood.inputFood(category);
-
-                        user.get(index).setProteinNeeds(proteinFromUSer); //accumulate the total protein for the user
-
-                        System.out.println("The total protein is: " +
-                                user.get(index).getProteinNeeds());  //debugging= see the total protein
-                    }
-
+                }
             }
 
-            //else if the username was not found
-            else if (!(user.get(index).getFirstName().equals(firstNameSearch)))
+           if (userExists)
             {
-                System.out.println("No user with that name found! User does not exist!");   //print error message
+                updateInfo(user, id);
             }
+
+           return id;
+        } //end update()
+
+
+        public static void updateInfo (ArrayList <CreateUser> user, int id)
+        {
+            Scanner scan = new Scanner(System.in);
+            System.out.println("What would you like to update?");  //display
+            System.out.println("1. Weight");                       //option 1
+            System.out.println("2. Exercise Intensity");           //option 2
+            System.out.println("3. Add Proteins");           //option 3
+
+            //getting the choice (1 or 2)
+            int biChoice = scan.nextInt();
+
+            //if choice is 1
+            if (biChoice == 1) {
+                System.out.println("The current weight of the user is: " + user.get(id).getWeight() + "kg."); //shows the current weight
+                //System.out.println("Enter the adjusted weight: ");  //prompts the weight
+                user.get(id).setWeight();                            //calls the set weight function
+
+                System.out.println("Your adjusted weight is now: " + user.get(id).getWeight() +
+                        " kilos!\nYou're all set...");            //confirmation that weight was updated
+            }
+
+            // else if choice is 2
+            else if (biChoice == 2) {
+                System.out.println("The current exercise intensity of the user is: " +
+                        user.get(id).getExerciseIntensity());        //shows the current exercise intensity
+                //System.out.println("Enter the adjusted intensity level: ");     //prompt
+                user.get(id).setExerciseIntensity();                         //calls the set exercise intensity function
+
+                System.out.println("Your adjusted exercise intensity level is now: " +
+                        user.get(id).getExerciseIntensity() +
+                        "\nYou're all set...");           //confirmation that the exercise intensity was updated
+            }
+
+            else if (biChoice == 3)
+            {
+                if (user.isEmpty())
+                {
+                    System.out.println("No user exists! Create one before accessing any information..");
+                }
+                else
+                {
+                    //int category = GetFood.getCat();
+                    //double proteinFromUSer = GetFood.inputFood(category);
+                    double proteinFromUSer = GetFood.inputFood();
+
+                    user.get(id).setProteinTotal(proteinFromUSer); //accumulate the total protein for the user
+                }
+            }
+
+        }//end updateInfo()
+
+
+    public static void showResults(ArrayList <CreateUser> user, int id)
+    {
+        System.out.println("The total protein requirement for you per day is: " + user.get(id).getProteinNeeds() +
+                " grams (g). You consumed a total of " + user.get(id).getProteinTotal() + " grams(g) of protein.");
+
+        if (user.get(id).getProteinTotal() == user.get(id).getProteinNeeds())
+        {
+            System.out.println("Thus, you have met your protein intake goal for today!");
+            System.out.println(" . . .");
+            System.out.println(". o o .");
+            System.out.println(". \\_/ .");
+            System.out.println(" . . .");
+        }
+
+        else if (user.get(id).getProteinTotal() < user.get(id).getProteinNeeds())
+        {
+
+            System.out.println("Your intake was below the recommended protein goal for today!");
+            System.out.println("  . . . ");
+            System.out.println(". T   T .");
+            System.out.println(". |   | .");
+            System.out.println("  . . . ");
+            System.out.println("\n\nYou under ate this amount: " + (((Math.round(user.get(id).getProteinNeeds()) * 100) /100.00)
+                    - (Math.round((user.get(id).getProteinTotal() * 100) / 100.00))) + " grams.");
+
+            System.out.println("Deficient intake can break down other muscle fibers to replenish the ones you worked out!" +
+                    " Not to mention, delaying gains!");
+        }
+
+        else if (user.get(id).getProteinTotal() > user.get(id).getProteinNeeds())
+        {
+            System.out.println("Your intake was above the recommended protein goal for today!");
+            System.out.println("  . . . .");
+            System.out.println(". ==   == .");
+            System.out.println(".    _    .");
+            System.out.println("  . . . .");
+            System.out.println("\n\nYou over ate this amount: " + (((Math.round(user.get(id).getProteinTotal()) * 100) /100.00)  -
+                    (Math.round((user.get(id).getProteinNeeds() * 100) / 100.00))) + " grams.");
+
+            System.out.println("Excess intake can put extra stress on your kidneys and liver as the liver will have to" +
+                    "break down those proteins into nitrogenous wastes while the kidneys will have to expel them.");
+
         }
 
 
-    } //end update()
+    } //end showResults
+
+
 
 
 } //end class Display
