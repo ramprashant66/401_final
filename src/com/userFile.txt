@@ -1,51 +1,29 @@
-First name: prash
+First name: pra
 Last name: ram
 Age: 26
-Height: 170.69
+Height: 158.5
 Weight: 52.27
 Exercise intensity: 1.0
-Total Protein consumed: 44.0 grams
+Total Protein consumed: 26.0 grams
 Total required for the day: 52.27 grams
 Intake status:  Under eaten
-Chrono: 12/06/2021 12:15 AM
+Chrono: 12/06/2021 12:47 AM
 
-First name: prash
-Weight: 54.55
-Exercise intensity: 1.0
-Total Protein consumed: 37.0 grams
-Total required for the day: 54.55 grams
-Intake status:  Under eaten
-Chrono: 12/06/2021 12:17 AM
-
-First name: prash
-Weight: 509.09
-Exercise intensity: 1.0
-Total Protein consumed: 100.0 grams
-Total required for the day: 509.09 grams
-Intake status:  Under eaten
-Chrono: 12/06/2021 12:21 AM
-
-First name: prash
-Weight: 105.0
+-------Returning User-------
+First name: pra
+Weight: 52.27
 Exercise intensity: 1.0
 Total Protein consumed: 33.0 grams
-Total required for the day: 105.0 grams
+Total required for the day: 52.27 grams
 Intake status:  Under eaten
-Chrono: 12/06/2021 12:22 AM
+Chrono: 12/06/2021 12:47 AM
 
-First name: prash
-Weight: 107.27
-Exercise intensity: 1.0
-Total Protein consumed: 288.0 grams
-Total required for the day: 107.27 grams
-Intake status: Met/Exceeded
-Chrono: 12/06/2021 12:23 AM
-
-First name: prash
+-------Returning User-------
+First name: pra
 Weight: 54.55
-Exercise intensity: 1.0
-Total Protein consumed: 20.0 grams
-Total required for the day: 54.55 grams
-Intake status:  Under eaten
-Chrono: 12/06/2021 12:40 AM
+Exercise intensity: 2.0
+Total Protein consumed: 163.0 grams
+Total required for the day: 109.1 grams
+Intake status: Met/Exceeded
+Chrono: 12/06/2021 12:49 AM
 

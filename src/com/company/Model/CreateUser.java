@@ -158,7 +158,8 @@ public class CreateUser
             else
             {
                 //stores the info to write in the string userData
-                userData = userData.concat("First name: " + getFirstName() + "\n" + "Weight: " + getWeight() + "\n" +
+                userData = userData.concat("-------Returning User-------\n" + "First name: " + getFirstName() + "\n" +
+                        "Weight: " + getWeight() + "\n" +
                         "Exercise intensity: " + getExerciseIntensity() + "\n");
             }
 
