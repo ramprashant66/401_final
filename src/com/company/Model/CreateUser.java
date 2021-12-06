@@ -17,6 +17,7 @@ public class CreateUser
     private double exerciseIntensityValue;       //user's exercise intensity level
     private double proteinTotal;
     private double proteinNeeds;
+    boolean returningUser;
 
     //Constructor for the class
     public CreateUser()
@@ -29,6 +30,13 @@ public class CreateUser
         setExerciseIntensity();             //sets user's exercise intensity
         proteinTotal = 0;
         setProteinNeeds();
+        setReturningUser(false);
+    }
+
+    public CreateUser(String firstName, String lastName)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     //gets user's first name
@@ -43,6 +51,15 @@ public class CreateUser
         firstName = Display.firstName();
     }
 
+
+    public boolean isReturningUser() {
+        return returningUser;
+    }
+
+    public void setReturningUser(boolean returningUser) {
+        this.returningUser = returningUser;
+    }
+
     //gets user's last name
     public String getLastName()
     {
@@ -55,6 +72,7 @@ public class CreateUser
         lastName = Display.lastName();
     }
 
+
     //gets user's age
     public int getAge()
     {
@@ -66,6 +84,7 @@ public class CreateUser
     {
         age = Display.age();
     }
+
 
     //gets user's height
     public double getHeight()
@@ -128,13 +147,24 @@ public class CreateUser
 
         try
         {
-            //stores the info to write in the string userData
-            userData = userData.concat("First name: " + getFirstName() + "\n" + "Last name: " + getLastName() + "\n" +
-                    "Age: " + getAge() + "\n" + "Height: " + getHeight() + "\n" + "Weight: " + getWeight() + "\n" +
-                    "Exercise intensity: " + getExerciseIntensity() + "\n");
+            if (!(returningUser))
+            {
+                //stores the info to write in the string userData
+                userData = userData.concat("First name: " + getFirstName() + "\n" + "Last name: " + getLastName() + "\n" +
+                        "Age: " + getAge() + "\n" + "Height: " + getHeight() + "\n" + "Weight: " + getWeight() + "\n" +
+                        "Exercise intensity: " + getExerciseIntensity() + "\n");
+            }
+
+            else
+            {
+                //stores the info to write in the string userData
+                userData = userData.concat("First name: " + getFirstName() + "\n" + "Weight: " + getWeight() + "\n" +
+                        "Exercise intensity: " + getExerciseIntensity() + "\n");
+            }
+
 
             //writing to the text file from the userData
-            userFile.write(userData);
+            userFile.append(userData);
 
         } catch (IOException error) //catching error if the file did not get created
         {

@@ -17,7 +17,8 @@ public class GetFood {
                         8. Veggies
                         9. Dairy
                         10. Snacks
-                        11. Protein Shake""");
+                        11. Protein Shake
+                        12. ----Main Menu----""");
     }
 
     public static int getCat() {
@@ -30,7 +31,7 @@ public class GetFood {
         System.out.println("Make your selection: ");        //user prompt
         selectCat = scan.nextInt();                         //get choice
 
-        while ((selectCat <= 0) || (selectCat > 11))        //input validation
+        while ((selectCat <= 0) || (selectCat > 12))        //input validation
         {
             System.out.println("Invalid Entry! Try again, mate!");
             System.out.println("Make your selection: ");
@@ -43,41 +44,63 @@ public class GetFood {
     public static double inputFood() {
         double totalProtein = 0.0;
 
-        ArrayList<FoodStuff> name;      //array list to hold the food
-        name = FoodStuff.foodStuff();   //store the returned array in the new array
+        String mainMenu = "N";
+        int index = 0;
+        int temp = 0;
 
-        int [] indices = {0, 6, 15, 22, 23, 27, 32, 37, 48, 57, 66, name.size()};
-
-        String exit = "N";
-
-        int index = getCat();
-
-        int firstOption = indices[index - 1];
-        if (firstOption - 1 < 0)
+        do
         {
-            firstOption = indices[0];
-        }
+            index = getCat();
+            temp = index;
 
-
-        int lastOption = indices[index];
-        if (lastOption > name.size())
-        {
-            lastOption = name.size();
-        }
-
-        index = 0;
-
-        while (!(exit.equals("Y")))          //loop until the "done" == N
-        {
-
-            for ( index = firstOption; index < lastOption; index++)   //indexes foe chicken
+            if (!(index == 12))
             {
-                System.out.println((index) + ". " + name.get(index).getFoodName()); //display the foodstuff
+
+                ArrayList<FoodStuff> name;      //array list to hold the food
+                name = FoodStuff.foodStuff();   //store the returned array in the new array
+
+                int [] indices = {0, 6, 15, 22, 23, 27, 32, 37, 48, 57, 66, name.size()};
+
+                String exit = "N";
+
+                // index = getCat();
+                // temp = index;
+
+                int firstOption = indices[index - 1];
+                if (firstOption - 1 < 0)
+                {
+                    firstOption = indices[0];
+                }
+
+
+
+
+                int lastOption = indices[index];
+                if (lastOption > name.size())
+                {
+                    lastOption = name.size();
+                }
+
+                index = 0;
+
+
+                for ( index = firstOption; index < lastOption; index++)   //indexes foe chicken
+                {
+                    System.out.println((index) + ". " + name.get(index).getFoodName()); //display the foodstuff
+                }
+
+                totalProtein += GetFood.addProtein(name, firstOption, lastOption);
+
+
+
+
             }
 
-            totalProtein += GetFood.addProtein(name, firstOption, lastOption);
-            exit = GetFood.getExit();
-        }
+        }  while (temp < 12);
+
+
+            //exit = GetFood.getExit();
+        //}
 
             return totalProtein;
     }

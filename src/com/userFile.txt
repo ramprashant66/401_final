@@ -1,11 +1,19 @@
-First name: p
-Last name: r
-Age: 23
-Height: 179.83
-Weight: 68.18
+First name: prash
+Last name: ram
+Age: 26
+Height: 170.69
+Weight: 52.27
 Exercise intensity: 1.0
-Total Protein consumed: 48.0 grams
-Total required for the day: 68.18 grams
+Total Protein consumed: 44.0 grams
+Total required for the day: 52.27 grams
 Intake status:  Under eaten
-Chrono: 11/26/2021 12:19 AM
+Chrono: 12/06/2021 12:15 AM
+
+First name: prash
+Weight: 54.55
+Exercise intensity: 1.0
+Total Protein consumed: 37.0 grams
+Total required for the day: 54.55 grams
+Intake status:  Under eaten
+Chrono: 12/06/2021 12:17 AM
 

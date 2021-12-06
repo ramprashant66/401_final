@@ -21,7 +21,7 @@ public class Main {
         ArrayList <CreateUser> totalUsers = new ArrayList<>();     //create an array list which will hold the user objects
 
         //creating a new text file which will hold the user's information
-        FileWriter userFile = new FileWriter("src/com/userFile.txt");
+        FileWriter userFile = new FileWriter("src/com/userFile.txt", true);
 
         String exitProgram = "N";       //initialize exitProgram to "N".
 
@@ -43,7 +43,16 @@ public class Main {
 
             else if (option == 2)
             {
-                userId = Display.checkUserExistence(totalUsers);       //update current user information
+                //String exiting = "N";
+               // while (!(exiting.equals("Y")))
+                //{
+                    userId = Display.checkUserExistence(totalUsers);       //update current user information
+
+                //return;
+                   // exiting = GetFood.getExit();
+                //}
+
+
             }
 
             else if (option == 3)
@@ -56,7 +65,7 @@ public class Main {
             {
                 //we exit
                 Menu.showExitLogo();
-                System.exit(0);
+               // System.exit(0);
             }
 
             exitProgram = Menu.endProgram();        //exit program?

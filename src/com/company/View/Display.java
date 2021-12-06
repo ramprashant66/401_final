@@ -1,6 +1,7 @@
 package com.company.View;
 import com.company.Model.*;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -123,15 +124,42 @@ public class Display
 
 
     //This block is used if the user chooses to update the information.
-    public static int checkUserExistence(ArrayList <CreateUser> user)
-    {
+    public static int checkUserExistence(ArrayList <CreateUser> user) throws IOException {
         int id = 0;
 
-        if (user.isEmpty()) //making sure the array has at least one user.
+        ArrayList <String> first = new ArrayList<String>();
+
+        FileReader reading = new FileReader("src/com/userFile.txt");
+        Scanner readFile = new Scanner(reading);
+
+        String line = "";
+        while(readFile.hasNextLine())
+        {
+            line = line.concat(readFile.nextLine() + "\n");
+
+        }
+
+        //System.out.println(line + "\n"); //display line
+
+
+
+
+
+
+        if ((user.isEmpty())  && (line.isEmpty())) //making sure the array has at least one user.
         {
             System.out.println("No users Exist! Create one before proceeding.");         //error message
             //return;                                         //exit program
         }
+
+
+
+
+        /*if (user.isEmpty()) //making sure the array has at least one user.
+        {
+            System.out.println("No users Exist! Create one before proceeding.");         //error message
+            //return;                                         //exit program
+        }*/
 
         else if (!userExists)
             {
@@ -148,11 +176,28 @@ public class Display
                     //if first name is in the array
                     if (user.get(index).getFirstName().equals(firstNameSearch))
                     {
-                        System.out.println("Alright! User <" + firstNameSearch + "> found with ID# " +
-                                index);  //confirmation that the username was found
+                        System.out.println("Alright! User <" + firstNameSearch + "> found!");  //confirmation that the username was found
 
                         userExists = true;
                         id = index;
+                    }
+
+                }
+                if (!(userExists))
+                {
+                    if(line.contains(firstNameSearch))
+                    {
+                        System.out.println("Successful!");
+                        CreateUser objectOne = new CreateUser(firstNameSearch, "last name");
+                        //objectOne.setProteinTotal(0);
+                        user.add(objectOne);
+                        userExists = true;
+                        objectOne.setWeight(); //set from record
+                        objectOne.setExerciseIntensity(); //set from record
+                        objectOne.setProteinNeeds();
+                        //System.out.println("id is: " + user.indexOf(objectOne));
+                        objectOne.setReturningUser(true);
+                        id = user.indexOf(objectOne);
                     }
                 }
             }
@@ -174,7 +219,7 @@ public class Display
             System.out.println("2. Exercise Intensity");           //option 2
             System.out.println("3. Add Proteins");           //option 3
 
-            //getting the choice (1 or 2)
+            //getting the choice (1 or 2 or 3)
             int biChoice = scan.nextInt();
 
             //if choice is 1

@@ -48,6 +48,8 @@ public class FoodStuff
         food.add(new FoodStuff("Chicken Whole", 1, "Unit", 163));
         food.add(new FoodStuff("Chicken egg", 1, "Unit",6.3));
 
+       // "Chicken Corn Soup", 14
+
         //seafood
         food.add(new FoodStuff("Oyster", 1, "Unit",4.7));
         food.add(new FoodStuff("Calamari", 1, "Ring",18));
@@ -94,7 +96,26 @@ public class FoodStuff
 
 
         //Fast food
-        food.add(new FoodStuff("McDonald's - Mc Chicken Nuggets",1 ,"Nugget",1.4)); ////////
+        food.add(new FoodStuff("McDonald's Chicken McNuggets",1 ,"Nugget",1.4)); ////////
+        food.add(new FoodStuff("McDonal's Big Mac Burger",1, "Burger",25));
+       /* "McDonal's Quarter Pounder Burger", 30
+        "McDonal's McDouble Burger", 22
+        "McDonal's Cheese Burger", 15
+        "McDonal's Ham Burger", 12
+        "McDonal's Crispy Chicken Sandwich", 27
+        "McDonal's McChicken", 14
+        "McDonal's Filet-O-Fish", 16
+        food.add(new FoodStuff("McDonald's Bacon, Egg & Cheese Biscuit breakfast sandwich",1, "Sandwich",17));
+
+        "KFC Crispy Colonel's Sandwich", 24
+        "KFC Chicken Breast [Original]", 39
+        "KFC Chicken DrumStick [Original]", 12
+        "KFC Chicken Thigh [Original]", 19
+        "KFC Chicken Wing [Original]", 10
+        "KFC Kentucky Fried Wings - Unsauced", 5
+*/
+
+
 
         //veggies
         food.add(new FoodStuff("Mushrooms", 1, "Cup",0.3));
