@@ -11,7 +11,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class Main {
+public class Main
+{
 
     public static void main(String[] args) throws IOException
     {
@@ -24,6 +25,7 @@ public class Main {
         FileWriter userFile = new FileWriter("src/com/userFile.txt", true);
 
         String exitProgram = "N";       //initialize exitProgram to "N".
+
 
         //Do these while the exitProgram is "n"
         while (exitProgram.equals("N"))
@@ -64,14 +66,20 @@ public class Main {
             else if (option == 4)
             {
                 //we exit
-                Menu.showExitLogo();
-               // System.exit(0);
+                exitProgram = "Y";
             }
 
-            exitProgram = Menu.endProgram();        //exit program?
+            if(option != 4)
+            {
+                exitProgram = Menu.endProgram();        //exit program?
+            }
+
         }
 
-        Display.showResults(totalUsers, userId);
+        if (!(totalUsers.isEmpty()))
+        {
+            Display.showResults(totalUsers, userId);
+        }
 
         for(CreateUser writeInfo : totalUsers)
         {
@@ -93,4 +101,5 @@ public class Main {
 TO DOS
 show both: weight in kilos and pounds
             height in inches and cms
+            fix the food indexes
  */

@@ -182,6 +182,10 @@ public class Display
                         id = index;
                     }
 
+                    else
+                    {
+                        System.out.println("No user with that name found!");
+                    }
                 }
                 if (!(userExists))
                 {
@@ -198,6 +202,11 @@ public class Display
                         //System.out.println("id is: " + user.indexOf(objectOne));
                         objectOne.setReturningUser(true);
                         id = user.indexOf(objectOne);
+                    }
+
+                    else
+                    {
+                        System.out.println("No user with that name found!");
                     }
                 }
             }
