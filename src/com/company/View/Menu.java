@@ -35,7 +35,7 @@ public class Menu
     public static String endProgram()
     {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Exit?"); //prompt the user
+        System.out.println("Exit the program? (y/n)"); //prompt the user
         String end = scan.next();    //user input
         end = end.toUpperCase();    //changing the string to an uppercase
 

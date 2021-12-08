@@ -27,3 +27,68 @@ Total required for the day: 109.1 grams
 Intake status: Met/Exceeded
 Chrono: 12/06/2021 12:49 AM
 
+-------Returning User-------
+First name: pra
+Weight: 68.18
+Exercise intensity: 1.0
+Total Protein consumed: 192.0 grams
+Total required for the day: 68.18 grams
+Intake status: Met/Exceeded
+Chrono: 12/07/2021 11:43 PM
+
+-------Returning User-------
+First name: pra
+Weight: 68.18
+Exercise intensity: 1.0
+Total Protein consumed: 46.0 grams
+Total required for the day: 68.18 grams
+Intake status:  Under eaten
+Chrono: 12/07/2021 11:51 PM
+
+-------Returning User-------
+First name: pra
+Weight: 68.18
+Exercise intensity: 1.0
+Total Protein consumed: 110.0 grams
+Total required for the day: 68.18 grams
+Intake status: Met/Exceeded
+Chrono: 12/07/2021 11:55 PM
+
+-------Returning User-------
+First name: pra
+Weight: 68.18
+Exercise intensity: 1.0
+Total Protein consumed: 60.0 grams
+Total required for the day: 68.18 grams
+Intake status:  Under eaten
+Chrono: 12/07/2021 11:56 PM
+
+-------Returning User-------
+First name: pra
+Weight: 68.18
+Exercise intensity: 1.0
+Total Protein consumed: 24.0 grams
+Total required for the day: 68.18 grams
+Intake status:  Under eaten
+Chrono: 12/07/2021 11:57 PM
+
+First name: pino
+Last name: llp
+Age: 23
+Height: 170.69
+Weight: 72.73
+Exercise intensity: 1.0
+Total Protein consumed: 0.0 grams
+Total required for the day: 72.73 grams
+Intake status:  Under eaten
+Chrono: 12/07/2021 11:57 PM
+
+-------Returning User-------
+First name: pra
+Weight: 55.91
+Exercise intensity: 1.0
+Total Protein consumed: 7.0 grams
+Total required for the day: 55.91 grams
+Intake status:  Under eaten
+Chrono: 12/07/2021 11:59 PM
+

@@ -14,11 +14,12 @@ public class GetFood {
                         5. Pork
                         6. Duck
                         7. Turkey
-                        8. Veggies
-                        9. Dairy
-                        10. Snacks
-                        11. Protein Shake
-                        12. ----Main Menu----""");
+                        8. Fast Food
+                        9. Veggies
+                        10. Dairy
+                        11. Snacks
+                        12. Protein Shake
+                        13. ----Exit This Menu----""");
     }
 
     public static int getCat() {
@@ -31,7 +32,7 @@ public class GetFood {
         System.out.println("Make your selection: ");        //user prompt
         selectCat = scan.nextInt();                         //get choice
 
-        while ((selectCat <= 0) || (selectCat > 12))        //input validation
+        while ((selectCat <= 0) || (selectCat > 13))        //input validation
         {
             System.out.println("Invalid Entry! Try again, mate!");
             System.out.println("Make your selection: ");
@@ -53,13 +54,13 @@ public class GetFood {
             index = getCat();
             temp = index;
 
-            if (!(index == 12))
+            if (!(index == 13))
             {
 
                 ArrayList<FoodStuff> name;      //array list to hold the food
                 name = FoodStuff.foodStuff();   //store the returned array in the new array
 
-                int [] indices = {0, 6, 15, 22, 23, 27, 32, 37, 48, 57, 66, name.size()};
+                int [] indices = {0, 7, 16, 21, 22, 26, 31, 36, 52, 63, 72, 81, name.size()};
 
                 String exit = "N";
 
@@ -96,7 +97,7 @@ public class GetFood {
 
             }
 
-        }  while (temp < 12);
+        }  while (temp < 13);
 
 
             //exit = GetFood.getExit();
