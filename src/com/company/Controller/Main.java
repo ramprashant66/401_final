@@ -5,6 +5,7 @@ import com.company.Model.FoodStuff;
 import com.company.Model.GetFood;
 import com.company.View.Display;
 import com.company.View.DisplayChart;
+import com.company.View.Instructions;
 import com.company.View.Menu;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -30,6 +31,7 @@ public class Main
         //Do these while the exitProgram is "n"
         while (exitProgram.equals("N"))
         {
+            Menu.programEntry();
             Menu.menu(); //shows user options
 
             int option = Menu.optionChosen();
@@ -63,13 +65,18 @@ public class Main
                 DisplayChart.chart(me);  //display chart
             }
 
-            else if (option == 4)
+            else if (option == 5)
             {
                 //we exit
                 exitProgram = "Y";
             }
 
-            if(option != 4)
+            else if (option == 4)
+            {
+                Instructions.instructions();
+            }
+
+            if(option != 5)
             {
                 exitProgram = Menu.endProgram();        //exit program?
             }
@@ -99,7 +106,7 @@ public class Main
 
 /*
 TO DOS
-show both: weight in kilos and pounds
+show both:
             height in inches and cms
-            fix the food indexes
+
  */

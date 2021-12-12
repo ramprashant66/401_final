@@ -1,6 +1,8 @@
 package com.company.Model;
 import java.io.FileWriter;                  //to write to a file
 import java.io.IOException;                 //for I/O exception
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -26,17 +28,16 @@ public class CreateUser
         setLastName();                      //sets user's last name
         setAge();                           //sets user's age
         setHeight();                        //sets user's height
-        setWeight();                        //sets user's weight
-        setExerciseIntensity();             //sets user's exercise intensity
+        setWeight(isReturningUser());                        //sets user's weight
+        setExerciseIntensity(isReturningUser());             //sets user's exercise intensity
         proteinTotal = 0;
         setProteinNeeds();
         setReturningUser(false);
     }
 
-    public CreateUser(String firstName, String lastName)
+    public CreateUser(String firstName)
     {
         this.firstName = firstName;
-        this.lastName = lastName;
     }
 
     //gets user's first name
@@ -105,9 +106,9 @@ public class CreateUser
     }
 
     //sets user's weight
-    public void setWeight()
+    public void setWeight(boolean returningUser)
     {
-        weight = Display.weight();
+        weight = Display.weight(returningUser);
     }
 
     //gets user's exercise intensity
@@ -117,9 +118,9 @@ public class CreateUser
     }
 
     //sets user's exercise intensity
-    public void setExerciseIntensity()
+    public void setExerciseIntensity(boolean returningUser)
     {
-        exerciseIntensityValue = Display.exercise();
+        exerciseIntensityValue = Display.exercise(returningUser);
     }
 
     public void setProteinTotal(double protein)
@@ -127,11 +128,22 @@ public class CreateUser
         proteinTotal += protein;
     }
 
-    public double getProteinTotal() { return (Math.round(proteinTotal) * 100) / 100.00; }
+    public double getProteinTotal()
+    {
+        BigDecimal proteinForUser = BigDecimal.valueOf(proteinTotal);////////////////////////
+        proteinForUser = proteinForUser.setScale(2, RoundingMode.HALF_UP);
+        return proteinForUser.doubleValue();
+    }
 
     public void setProteinNeeds()
     {
-        proteinNeeds = (exerciseIntensityValue * weight);
+        BigDecimal needs = BigDecimal.valueOf(weight / 2.2);////////////////////////
+        needs = needs.setScale(2, RoundingMode.HALF_UP);
+
+        BigDecimal temp = BigDecimal.valueOf(exerciseIntensityValue * needs.doubleValue());
+        temp = temp.setScale(2, RoundingMode.HALF_UP);
+
+        proteinNeeds = (temp.doubleValue());
     }
 
     public double getProteinNeeds()
@@ -147,11 +159,15 @@ public class CreateUser
 
         try
         {
+            BigDecimal roundedWeight = BigDecimal.valueOf(getWeight() / 2.2);////////////////////////
+            roundedWeight = roundedWeight.setScale(2, RoundingMode.HALF_UP);
+
             if (!(returningUser))
             {
                 //stores the info to write in the string userData
                 userData = userData.concat("First name: " + getFirstName() + "\n" + "Last name: " + getLastName() + "\n" +
-                        "Age: " + getAge() + "\n" + "Height: " + getHeight() + "\n" + "Weight: " + getWeight() + "\n" +
+                        "Age: " + getAge() + "\n" + "Height: " + getHeight() + "\n" + "Weight: " + getWeight() + " lbs/ " +
+                        (roundedWeight.doubleValue()) + " kgs" + "\n" +
                         "Exercise intensity: " + getExerciseIntensity() + "\n");
             }
 
@@ -159,7 +175,7 @@ public class CreateUser
             {
                 //stores the info to write in the string userData
                 userData = userData.concat("-------Returning User-------\n" + "First name: " + getFirstName() + "\n" +
-                        "Weight: " + getWeight() + "\n" +
+                        "Weight: " + getWeight() +  " lbs/ " + (roundedWeight.doubleValue()) + " kgs" + "\n" +
                         "Exercise intensity: " + getExerciseIntensity() + "\n");
             }
 
@@ -186,7 +202,7 @@ public class CreateUser
             //stores the info to write in the string userData
             userData = userData.concat("Total Protein consumed: " + getProteinTotal() + " grams" + "\n" +
                     "Total required for the day: " + getProteinNeeds() + " grams" + "\n" + "Intake status: " +
-                            (getProteinTotal() >= getProteinNeeds() ? "Met/Exceeded" : " Under eaten") + "\n" +
+                            (getProteinTotal() >= getProteinNeeds() ? "Met/Exceeded" : "Under eaten") + "\n" +
                     "Chrono: " + simpleDate.format(currentDate) + "\n\n");
 
             //writing to the text file from the userData
