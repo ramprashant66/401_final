@@ -122,7 +122,7 @@ public class FoodStuff
         //Veggies
         food.add(new FoodStuff("Mushrooms", 1, "Cup",0.3));
         food.add(new FoodStuff("Soybean", 1, "Cup",31));
-        food.add(new FoodStuff("Tofu", 0.2, "0.2 ounce block",9.1));
+        food.add(new FoodStuff("Tofu", 0.2, "ounce block",9.1));
         food.add(new FoodStuff("Lentils", 1, "Cup",18));
         food.add(new FoodStuff("Pinto beans", 1, "Cup",15));
         food.add(new FoodStuff("Chickpea", 1, "Cup",15));

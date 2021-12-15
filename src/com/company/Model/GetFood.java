@@ -150,6 +150,12 @@ public class GetFood
             System.out.println("Adjust the quantity: ");            //user prompt to change the quantity
             proteinTemp =  scan.nextDouble();               //this holds temporary quantity entered from the user
 
+            while (proteinTemp < 0.0)           //protein cannot be a negative number
+            {
+                System.out.println("Quantity cannot be a negative number! Try again..");    //show the error message
+                proteinTemp = scan.nextDouble();    //re-take input
+            }
+
         } catch (InputMismatchException error)
         {
             //display the error message
