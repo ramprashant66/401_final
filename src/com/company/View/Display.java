@@ -26,7 +26,13 @@ public class Display
         System.out.println("Enter your first name: "); //prompting the user to enter their first name
         Scanner name = new Scanner (System.in);        //new scanner object
 
-        return name.next();                            //returning the input
+        String firstN = name.nextLine();            //taking input
+        while (firstN.length() < 3)                 //their first name must have at least 3 characters
+        {
+            System.out.println("Please enter at least the first 3 letters of the first name!"); //re-prompt the user
+            firstN = name.nextLine(); //take input again
+        }
+        return firstN;                            //returning the input
     } //end firstName()
 
     //This method reads the last name from the user and returns it.
@@ -218,6 +224,12 @@ public class Display
                 Scanner scan = new Scanner(System.in);      //new scanner to work with
                 String firstNameSearch = scan.nextLine();   //taking the entered first name to search the array
 
+                while (firstNameSearch.length() < 3)
+                {
+                    System.out.println("Please enter at least the first 3 letters of the first name!"); //re-prompt the user
+                    firstNameSearch = scan.nextLine(); //take input again
+                }
+
                 //We check if they were created recently (through the array list),
                 // hence, we loop to search for the inputted name in the array.
                 for (int index = 0; index < user.size(); index++)
@@ -230,12 +242,6 @@ public class Display
 
                         userExists = true;  //set that there exists a user
                         id = index;         //their ID is the index their name was found (if we have multiple users)
-                    }
-
-                    //else, display that we couldn't find a user with that name.
-                    else
-                    {
-                        System.out.println("No user with that name found!"); //display name did not match
                     }
                 }
 
@@ -332,7 +338,7 @@ public class Display
     {
         //this shows what their total requirement for the day was based on their weight and exercise intensity
         System.out.println("The total protein requirement for you per day is: " + user.get(id).getProteinNeeds() +
-                " grams (g). You consumed a total of " + user.get(id).getProteinTotal() + " grams(g) of protein.");
+                " grams (g). You consumed a total\nof " + user.get(id).getProteinTotal() + " grams(g) of protein.");
 
         //if they met their requirement
         if (user.get(id).getProteinTotal() == user.get(id).getProteinNeeds())
@@ -370,7 +376,7 @@ public class Display
 
             //offering tips
             System.out.println("Deficient intake can break down other muscle fibers to replenish the ones you worked out!" +
-                    " Not to mention, delaying gains!");
+                    "\nNot to mention, delaying gains!");
         }
 
         //if they over ate
@@ -398,7 +404,7 @@ public class Display
 
             //offering tips
             System.out.println("Excess intake can put extra stress on your kidneys and liver as the liver will have to" +
-                    "break down those proteins into nitrogenous wastes while the kidneys will have to expel them.");
+                    "\nbreak down those proteins into nitrogenous wastes which the kidneys will have to expel.");
 
         }
 
