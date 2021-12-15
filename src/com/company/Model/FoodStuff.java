@@ -1,46 +1,55 @@
 package com.company.Model;
 
-import java.util.ArrayList;
+import java.util.ArrayList;     // to use array lists
 
+/*
+    This class is responsible for making food objects and acts like a local, informal database for them.
+ */
 public class FoodStuff
 {
-    private final String foodName;
-    private final double quantity;
-    private final String unit;
-    private final double content;
+    private final String foodName;      // food name
+    private final String unit;          // food's unit (e.g., ounce/singles/cup, etc)
+    private final double quantity;      // food's quantity
+    private final double content;       // food's protein content
 
+    //This is default constructor for the FoodStuff object
     public FoodStuff(String foodName, double quantity, String unit, double content)
     {
-        this.foodName = foodName;
-        this.quantity = quantity;
-        this.unit = unit;
-        this.content = content;
+        this.foodName = foodName;       //sets the name
+        this.quantity = quantity;       //sets the quantity
+        this.unit = unit;               //sets the unit
+        this.content = content;         //sets the protein content
     }
 
-    public String getUnit() {
-        return unit;
-    }
-
+    //This method gets the Food's food name
     public String getFoodName()
     {
         return foodName;
     }
 
+    //This method gets the Food's unit size
+    public String getUnit() {
+        return unit;
+    }
+
+    //This method gets the Food's quantity
     public double getQuantity()
     {
         return quantity;
     }
 
+    //This method gets the Food's protein content
     public double getContent()
     {
         return content;
     }
 
+    //This method create various food objects
     public static ArrayList<FoodStuff>  foodStuff()
     {
-        ArrayList<FoodStuff> food = new ArrayList<>();
+        ArrayList<FoodStuff> food = new ArrayList<>();  //this arrayList holds all the FoodStuff objects
 
-        //chicken
+        //Chicken
         food.add(new FoodStuff("chicken breast", 1, "Pound", 37));
         food.add(new FoodStuff("Chicken Drumstick", 1, "Drumstick", 22));
         food.add(new FoodStuff("Chicken Wings", 1, "Wing", 4.5));
@@ -49,7 +58,7 @@ public class FoodStuff
         food.add(new FoodStuff("Chicken egg", 1, "Unit",6.3));
         food.add(new FoodStuff( "Chicken Corn Soup", 1,"Bowl",14));
 
-        //seafood
+        //Seafood
         food.add(new FoodStuff("Oyster", 1, "Unit",4.7));
         food.add(new FoodStuff("Calamari", 1, "Ring",18));
         food.add(new FoodStuff("Fish fillet", 1, "Fillet",38));
@@ -60,26 +69,23 @@ public class FoodStuff
         food.add(new FoodStuff("Crab leg", 1, "Leg",26));
         food.add(new FoodStuff("Shrimps", 1, "Shrimp",1.1));
 
-        //lamb
+        //Lamb + Goat
         food.add(new FoodStuff("Lamb Shank", 1, "Unit",22));
         food.add(new FoodStuff("Lamb Shoulder Chop", 1, "Unit",19));
         food.add(new FoodStuff("Lamb Shoulder Kebab", 1, "8.8 ounce",19));
         food.add(new FoodStuff("Lamb Slice", 1, "Pound",59));
         food.add(new FoodStuff("Goat", 1, "Pound", 93.4));
 
-
-        //beef
+        //Beef
         food.add(new FoodStuff("Steak", 1, "Steak",58));
 
-
-        //pork
+        //Pork
         food.add(new FoodStuff("Bacon strips", 1, "Strip",4));
         food.add(new FoodStuff("Pork belly", 1, "Unit",42));
         food.add(new FoodStuff("Pork skin", 1, "Ounce",17));
         food.add(new FoodStuff("Pork tenderloin", 1, "Pound", 95.3));
 
-
-        //duck
+        //Duck
         food.add(new FoodStuff("Duck breast", 3, "Breast",21));
         food.add(new FoodStuff("Duck drumstick", 1, "Drumstick",50.6));
         food.add(new FoodStuff("Duck Whole", 1, "Unit",27));
@@ -113,8 +119,7 @@ public class FoodStuff
         food.add(new FoodStuff("KFC Chicken Wing [Original]", 1,"Wing",10));
         food.add(new FoodStuff("KFC Kentucky Fried Wings - Unsauced", 1,"WIng",5));
 
-
-        //veggies
+        //Veggies
         food.add(new FoodStuff("Mushrooms", 1, "Cup",0.3));
         food.add(new FoodStuff("Soybean", 1, "Cup",31));
         food.add(new FoodStuff("Tofu", 0.2, "0.2 ounce block",9.1));
@@ -127,9 +132,7 @@ public class FoodStuff
         food.add(new FoodStuff("Buckwheat", 1, "Cup",5.7));
         food.add(new FoodStuff("Broccoli", 1, "Cup",4));
 
-
-
-        //dairy
+        //Dairy
         food.add(new FoodStuff("Whole milk", 1, "250ml glass",6.8));
         food.add(new FoodStuff("2% fat milk", 1, "250ml glass",9.7));
         food.add(new FoodStuff("1% fat milk", 1, "250ml glass",8.2));
@@ -140,7 +143,7 @@ public class FoodStuff
         food.add(new FoodStuff("Cheese slice", 1, "Slice",6.4));
         food.add(new FoodStuff("Butter", 1, "Teaspoon", 0.1));
 
-        //snacks
+        //Snacks
         food.add(new FoodStuff("Granola bar", 1, "Bar", 1.6));
         food.add(new FoodStuff("Almonds", 1, "Almond",0.3));
         food.add(new FoodStuff("Cashew Nuts", 1, "Cashew", 0.2));
@@ -151,8 +154,7 @@ public class FoodStuff
         food.add(new FoodStuff("Protein Bar", 1, "Bar",20));
         food.add(new FoodStuff("Peanut Butter", 1, "Tablespoon", 3.5 ));
 
-        //protein shake
-        //need to enter from various brands of protein
+        //Protein shake
         food.add(new FoodStuff("Whey Protein", 1, "Scoop",30));
         food.add(new FoodStuff("Body Fortress: Whey Protein", 1, "Scoop",30));
         food.add(new FoodStuff("Nitro Tech: Whey Isolate", 1, "Scoop",30));
@@ -161,7 +163,6 @@ public class FoodStuff
 
         return food;
 
-    }//end foodStuff()
-
+    } //end FoodStuff()
 
 } //end class FoodStuff

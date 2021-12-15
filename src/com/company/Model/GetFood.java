@@ -1,9 +1,14 @@
 package com.company.Model;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import com.company.View.PromptsMessages;
 
-public class GetFood {
+import java.util.ArrayList;                  // to use arrayList
+import java.util.InputMismatchException;    // to catch incorrect data entry inputs
+import java.util.Scanner;                   // to use scanner objects
+
+public class GetFood
+{
+    //This method displays the food categories
     public static void foodCategories() {
         System.out.println(
                 """
@@ -20,132 +25,140 @@ public class GetFood {
                         11. Snacks
                         12. Protein Shake
                         13. ----Exit This Menu----""");
-    }
 
-    public static int getCat() {
-        foodCategories();       //display the food categories
+    } //end foodCategories
 
-        int selectCat;     //initialize variable which will hold the user's choice from menu
+    //This method returns the category selected by the user
+    public static int getCat()
+    {
+        foodCategories();       //displays the food categories
 
-        Scanner scan = new Scanner(System.in);
+        int selectCat;     //this variable will hold the category selected
 
-        System.out.println("Make your selection: ");        //user prompt
-        selectCat = scan.nextInt();                         //get choice
+        Scanner scan = new Scanner(System.in);  //new scanner object to work with
 
-        while ((selectCat <= 0) || (selectCat > 13))        //input validation
+        System.out.println("Make your selection: ");        //user prompt to select a category
+        try {
+            selectCat = scan.nextInt();                         //get the user input
+
+            while ((selectCat <= 0) || (selectCat > 13))        //input validation where selection needs to be between 1-13
+            {
+                System.out.println("Invalid Entry! Try again, mate!");      //print error message
+                System.out.println("Make your selection: ");                //re-prompt for user input
+                selectCat = scan.nextInt();                                 //get the user input
+            }
+        } catch (InputMismatchException error)      //catch anything else apart from integer
         {
-            System.out.println("Invalid Entry! Try again, mate!");
-            System.out.println("Make your selection: ");
-            selectCat = scan.nextInt();
+            PromptsMessages.inputMismatch();        //show the error message
+            selectCat = getCat();       //call this method again to take input
         }
 
-        return selectCat;       //return to the caller
-    }
+        return selectCat;       //return the selection
 
-    public static double inputFood() {
-        double totalProtein = 0.0;
+    } //end getCat()
 
-        String mainMenu = "N";
-        int index = 0;
-        int temp = 0;
+    //This method returns the food selected from the category
+    public static double inputFood()
+    {
+        double totalProtein = 0.0;              //initialize the variable to 0.0
+
+        int index,                              //declare the two variables.
+            temp;
 
         do
         {
-            index = getCat();
-            temp = index;
+            index = getCat();                   //index holds the category selected by the user.
+            temp = index;                       //temporary variable stores the value from, index variable.
 
-            if (!(index == 13))
+            if (!(index == 13))             //carry out the below as long as the user does not choose to exit this menu
             {
 
-                ArrayList<FoodStuff> name;      //array list to hold the food
-                name = FoodStuff.foodStuff();   //store the returned array in the new array
+                ArrayList<FoodStuff> name;      //this arrayList will hold the food contained in this program
+                name = FoodStuff.foodStuff();   //store the returned array in the new arrayList
 
-                int [] indices = {0, 7, 16, 21, 22, 26, 31, 36, 52, 63, 72, 81, name.size()};
+                //this array contains the indexes of where each food category starts and ends, consequently.
+                int [] indices = { 0, 7, 16, 21, 22, 26, 31, 36, 52, 63, 72, 81, name.size() };
 
-                String exit = "N";
-
-                // index = getCat();
-                // temp = index;
-
+                //starting index of each category is current index -1, that is, where the previous category ended.
                 int firstOption = indices[index - 1];
-                if (firstOption - 1 < 0)
+                if (firstOption - 1 < 0)        //we make sure that we do not step out of bounds.
                 {
+                    //if we do, assign the first value in the array to the starting index of the category
                     firstOption = indices[0];
                 }
 
-
-
-
+                //ending index of each category is current index.
                 int lastOption = indices[index];
-                if (lastOption > name.size())
+
+                if (lastOption > name.size())   //we make sure that we do not step out of bounds.
                 {
+                    //if we do, assign the last value in the array to the ending index of the category
                     lastOption = name.size();
                 }
 
-                index = 0;
-
-
-                for ( index = firstOption; index < lastOption; index++)   //indexes foe chicken
+                //this prints the food contained in the category selected by the user
+                for ( index = firstOption; index < lastOption; index++)
                 {
-                    System.out.println((index) + ". " + name.get(index).getFoodName()); //display the foodstuff
+                    System.out.println((index) + ". " + name.get(index).getFoodName()); //display the food
                 }
 
+                //keep accumulating the protein value the user selects
                 totalProtein += GetFood.addProtein(name, firstOption, lastOption);
-
-
-
 
             }
 
-        }  while (temp < 13);
+        }  while (temp < 13);  //carry out the above as long as the user does not choose option 13
 
+            return totalProtein;        //return the total protein content of the food
 
-            //exit = GetFood.getExit();
-        //}
+    } //end inputFood()
 
-            return totalProtein;
-    }
-
+    //This method returns the accumulated protein
     public static double addProtein(ArrayList<FoodStuff> items, int init, int end)
     {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("\nEnter your choice: ");        //prompt for foodstuff
-        int selection = scan.nextInt();     //get the food item from user for chicken
+        Scanner scan = new Scanner(System.in);              //new scanner object to work with
+        System.out.println("\nEnter your choice: ");        //prompt the user to enter the foodstuff
 
-        while ((selection < init) || (selection >= end))
+        int selection;
+        try
         {
-            System.out.println("Invalid! Try again.");
-            System.out.println("\nEnter your choice: ");
-            selection = scan.nextInt();
+            selection = scan.nextInt();                     //get the food item from user
+
+            //input validation where the user must enter the choices in range of each food category
+            while ((selection < init) || (selection >= end))
+            {
+                //if not, display the error message
+                System.out.println("Invalid! Your entry was not in the range. Let's try that again...");
+                System.out.println("\nEnter your choice: "); //re-prompt the user to re-enter
+
+                selection = scan.nextInt();         //get the user input
+            }
+        } catch (InputMismatchException error)
+        {
+            //display the error message
+            System.out.println("Oh no! A wrong input was entered. The inputted quantity was reset to 0");
+            return 0;           //return with a default value of 0
         }
 
+        //Display the chosen food's default quantity.
         System.out.println("The quantity is: " + items.get(selection).getQuantity()
-                + " for 1 " + items.get(selection).getUnit()); //print the current quantity of the food item
-        System.out.println("Adjust the quantity: ");  //user prompt to change the quantity
+                + " for 1 " + items.get(selection).getUnit());  //print the current quantity of the food item
 
-        double proteinTemp = scan.nextDouble();         //this holds temporary quantity from the user
-
-        return (proteinTemp * items.get(selection).getContent());      //accumulates the proteins
-
-    }
-
-    public static String getExit()
-    {
-        System.out.println("Done entering from this category? (Y/N)");      //user prompt to exit loop
-        Scanner scanThis = new Scanner(System.in);
-        String done = scanThis.nextLine();     //take input
-        done = done.toUpperCase();
-
-        while(!((done.equals("Y")) || (done.equals("N"))))
+        double proteinTemp;
+        try
         {
-            System.out.println("Invalid Entry! Enter only (y/n)...");
-            done = scanThis.nextLine();
-            done = done.toUpperCase();
+            System.out.println("Adjust the quantity: ");            //user prompt to change the quantity
+            proteinTemp =  scan.nextDouble();               //this holds temporary quantity entered from the user
+
+        } catch (InputMismatchException error)
+        {
+            //display the error message
+            System.out.println("Oh no! A wrong input was entered. The inputted quantity was reset to 0");
+            return 0;           //return with a default value of 0
+
         }
+        return (proteinTemp * items.get(selection).getContent());      //return the accumulated the protein
 
-        return done;
-    }
-
-
+    } //end addProtein()
 
 }//end class GetFood

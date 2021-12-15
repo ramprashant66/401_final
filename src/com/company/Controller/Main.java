@@ -1,112 +1,103 @@
 package com.company.Controller;
 
-import com.company.Model.CreateUser;
-import com.company.Model.FoodStuff;
-import com.company.Model.GetFood;
-import com.company.View.Display;
-import com.company.View.DisplayChart;
-import com.company.View.Instructions;
-import com.company.View.Menu;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
+import com.company.Model.CreateUser;        //to use CreateUser class from Model package
+import com.company.Model.FoodStuff;         //to use FoodStuff class from Model package
+import com.company.View.*;
 
+import java.io.FileWriter;                  //for external output operations
+import java.io.IOException;                 //to handle exceptions
+import java.util.ArrayList;                 //to use array lists
 
 public class Main
 {
-
     public static void main(String[] args) throws IOException
     {
+        int userId = 0;         //this ties with each user, acting as their ID number.
 
-        int userId = 0;
-        int userCount = 0;      //this acts as the loop control variable
-        ArrayList <CreateUser> totalUsers = new ArrayList<>();     //create an array list which will hold the user objects
+        //this creates an array list which will hold the users as objects
+        ArrayList <CreateUser> totalUsers = new ArrayList<>();
 
-        //creating a new text file which will hold the user's information
+        //this creates a new text file which will hold the user's information
         FileWriter userFile = new FileWriter("src/com/userFile.txt", true);
 
-        String exitProgram = "N";       //initialize exitProgram to "N".
+        //this variable will decide if the program will quit or not. Initialize it to "N" by default to make it
+        // run at least once.
+        String exitProgram = "N";
 
-
-        //Do these while the exitProgram is "n"
+        //Do these while the exitProgram is "N"
         while (exitProgram.equals("N"))
         {
-            Menu.programEntry();
-            Menu.menu(); //shows user options
+            Menu.programEntry();        //show the application title
+            Menu.menu();                //show the program's main menu
 
-            int option = Menu.optionChosen();
+            int option = Menu.optionChosen();   //return the option chosen from the user
 
+            //if the user chose option 1, then:
             if (option == 1)
             {
-                CreateUser user = new CreateUser();  //creates a new user.
-                totalUsers.add(user);             //adds the user to the users array list.
-                userCount++;                            //increment count variable
-
-                //user.storeData(userFile);           //write the data to the text file.
+                CreateUser user = new CreateUser();     //we create a new user.
+                totalUsers.add(user);                   //we add the user to the users array list.
+                PromptsMessages.success();              //confirmation that the user was added
             }
 
+            //else if the user chose option 2, then:
             else if (option == 2)
             {
-                //String exiting = "N";
-               // while (!(exiting.equals("Y")))
-                //{
-                    userId = Display.checkUserExistence(totalUsers);       //update current user information
-
-                //return;
-                   // exiting = GetFood.getExit();
-                //}
-
-
+                    userId = Display.checkUserExistence(totalUsers);       //we update the current user information.
             }
 
+            //else if the user chose option 3, then:
             else if (option == 3)
             {
-                ArrayList<FoodStuff> me = FoodStuff.foodStuff(); //get the chart
-                DisplayChart.chart(me);  //display chart
+                //we fetch the foodstuff chart and pass it DisplayChart.chart() method, next.
+                ArrayList<FoodStuff> me = FoodStuff.foodStuff();
+                DisplayChart.chart(me);                            //this method displays the chart to the user.
             }
 
+            //if the user chose option 4, then:
+            else if (option == 4)
+            {
+                Instructions.instructions();        //display the program instructions
+
+            }
+
+            //if the user chose option 5, then:
             else if (option == 5)
             {
-                //we exit
+                //this ends the while loop
                 exitProgram = "Y";
             }
 
-            else if (option == 4)
-            {
-                Instructions.instructions();
-            }
-
+            //after each conditional statement, we ask the user if they wish to end the program.
             if(option != 5)
             {
-                exitProgram = Menu.endProgram();        //exit program?
+                exitProgram = Menu.endProgram();        //prompt the user for exit
             }
 
         }
 
+        //if a user exists, then we display their results before exiting.
         if (!(totalUsers.isEmpty()))
         {
+            //displays their results by accessing the array list and their user id.
             Display.showResults(totalUsers, userId);
         }
 
+        //we write this information from the array list to the text file
         for(CreateUser writeInfo : totalUsers)
         {
-            writeInfo.storeData(userFile);           //write the data to the text file.
+            //write everything apart from their protein content part to the text file (first name, last name,
+            //age, weight, height, exercise intensity level).
+            writeInfo.storeData(userFile);
+
+            //Write the protein part to their records.
             writeInfo.storeProtein(userFile);
         }
 
-        Menu.showExitLogo(); //show exit logo
+        Menu.showExitLogo();                //display the program exit logo upon program exit
 
         userFile.close();                   //close the user file
-
 
     } //emd main()
 
 } //end class main
-
-
-/*
-TO DOS
-show both:
-            height in inches and cms
-
- */
