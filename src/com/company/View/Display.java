@@ -295,7 +295,7 @@ public class Display
                 biChoice = scan.nextInt();  //getting the choice (1 or 2)
 
                 //if their input is not between 1 and 2,
-                while (biChoice < 0 || biChoice > 2)
+                while (biChoice <= 0 || biChoice > 2)
                 {
                     System.out.println("Invalid entry. Enter only 1 or 2.");  //issue an error message
                     biChoice = scan.nextInt();      //take the input again

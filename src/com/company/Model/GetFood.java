@@ -14,7 +14,7 @@ public class GetFood
                 """
                         1. Chicken
                         2. Seafood
-                        3. Lamb
+                        3. Lamb & Goat
                         4. Beef
                         5. Pork
                         6. Duck
@@ -142,7 +142,7 @@ public class GetFood
 
         //Display the chosen food's default quantity.
         System.out.println("The quantity is: " + items.get(selection).getQuantity()
-                + " for 1 " + items.get(selection).getUnit());  //print the current quantity of the food item
+                + " " + items.get(selection).getUnit());  //print the current quantity of the food item
 
         double proteinTemp;
         try
